@@ -3,14 +3,8 @@
         <li class="nav-item">
             <a routerLink="/home" routerLinkActive="active">Home</a>
         </li>
-        <li class="nav-item">
-            <a [routerLink]="['/tech', 'frontend']" routerLinkActive="active">Front End</a>
-        </li>
-        <li class="nav-item">
-            <a [routerLink]="['/tech', 'backend']" routerLinkActive="active">Back End</a>
-        </li>
-        <li class="nav-item">
-            <a [routerLink]="['/tech', 'testing']" routerLinkActive="active">Testing</a>
+        <li class="nav-item" *ngFor="let list of techDataList">
+            <a [routerLink]="['/tech', list]" routerLinkActive="active">{{list}}</a>
         </li>
     </ul>
 </header>
