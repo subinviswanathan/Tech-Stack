@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TechDetailComponent implements OnInit {
 
   constructor() { }
-  @Input('data') data;
+  @Input('techDetail') techDetail;
 
   ngOnInit() {
   }

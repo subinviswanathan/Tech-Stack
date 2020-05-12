@@ -17,6 +17,10 @@
     font-weight: 600;
 }
 
+.description {
+    padding: 1.5rem;
+}
+
 @media (max-width: 767px) {
     .list-container {
         flex-direction: column;

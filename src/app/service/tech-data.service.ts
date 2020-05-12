@@ -1,31 +1,45 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TechModelWithCount, TechModel } from '../model/tech-model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TechDataService {
 
-  allTechData: TechModel[] = [];
-  techList = [];
+  private _allTechData = new BehaviorSubject([]);
+  allTechData = this._allTechData.asObservable();
+
+  private _techLists = new BehaviorSubject([]);
+  techLists$ = this._techLists.asObservable();
+
+  private _techDatas = new BehaviorSubject([]);
+  techData$ = this._techDatas.asObservable();
+
   private _url = 'https://my-json-server.typicode.com/subinviswanathan/tech-db/db';
 
   constructor(private _http: HttpClient) { }
 
   getAllTechData() {
     return this._http.get<TechModelWithCount>(this._url)
-      .subscribe((res) => {
-        this.allTechData = res.data || [];
-        this.getTechList();
-      });
+    // .subscribe((res) => {
+    //   this.allTechData = res.data || [];
+    //   this._techLists.next(this.getTechList());
+    //   this._techDatas.next(res.data);
+    // });
   }
 
-  getTechList() {
-    return [... new Set(this.allTechData.map(data => data.type))];
+  filterTechData(data) {
+    this._techDatas.next(data);
   }
 
-  getTechData() {
-    return [...this.allTechData];
+  getTechList(data) {
+    this._techLists.next(data);
+    //[... new Set(this.allTechData.map(data => data.type))];
+  }
+
+  getTechData(data) {
+    this._allTechData.next(data);
   }
 }

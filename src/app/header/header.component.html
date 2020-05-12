@@ -3,7 +3,7 @@
         <li class="nav-item">
             <a routerLink="/home" routerLinkActive="active">Home</a>
         </li>
-        <li class="nav-item" *ngFor="let list of techDataList">
+        <li class="nav-item" *ngFor="let list of techDataList$ | async">
             <a [routerLink]="['/tech', list]" routerLinkActive="active">{{list}}</a>
         </li>
     </ul>

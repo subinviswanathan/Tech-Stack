@@ -1,9 +1,9 @@
-<div *ngFor="let data of datas; let i = index" class="list-container">
+<div *ngFor="let data of techDatas; let i = index" class="list-container">
     <div *ngIf="!toggle[i+1]" class="tech-detail">
-        <app-tech-detail [data]="data"></app-tech-detail>
+        <app-tech-detail [techDetail]="data"></app-tech-detail>
     </div>
     <div *ngIf="toggle[i+1]" class="tech-description">
-        <app-tech-desc [description]="data.description"></app-tech-desc>
+        <p class="description">{{data.description}}</p>
     </div>
     <div class="button-area">
         <button (click)="toggle[i+1] = !toggle[i+1]" class="btn">{{!toggle[i+1] ? 'Description' : 'Back'}}</button>

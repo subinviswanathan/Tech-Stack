@@ -9,12 +9,15 @@ import { TechDataService } from '../service/tech-data.service';
 export class HeaderComponent implements OnInit {
 
   constructor(private _techService: TechDataService) { }
-  techDataList = [];
+  techDataList$ = this._techService.techLists$;
 
   ngOnInit() {
     this._techService.getAllTechData()
-    //.subscribe()
-    this.techDataList = this._techService.getTechList();
+      .subscribe(res => {
+        let data = res.data || [];
+        let uniqueTech = [... new Set(data.map(item => item.type))];
+        this._techService.getTechList(uniqueTech);
+      });
   }
 
 }

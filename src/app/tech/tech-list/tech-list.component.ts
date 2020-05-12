@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TechListComponent implements OnInit {
 
   constructor() { }
-  @Input('data') datas;
+  @Input('techDatas') techDatas;
   toggle = {};
 
   ngOnInit() {
