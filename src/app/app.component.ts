@@ -8,7 +8,4 @@ import { TechDataService } from './service/tech-data.service';
 })
 export class AppComponent {
   title = 'tech-stack';
-  constructor(private _techService: TechDataService) {
-    this._techService.getAllTechData();
-  }
 }

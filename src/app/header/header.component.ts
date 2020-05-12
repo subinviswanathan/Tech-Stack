@@ -8,7 +8,9 @@ import { TechDataService } from '../service/tech-data.service';
 })
 export class HeaderComponent {
 
-  constructor(private _techService: TechDataService) { }
+  constructor(private _techService: TechDataService) {
+    this._techService.getAllTechData();
+  }
   techDataList$ = this._techService.techLists$;
 
 }
