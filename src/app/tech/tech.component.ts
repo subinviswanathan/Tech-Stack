@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TechDataService } from '../service/tech-data.service';
 import { combineLatest } from 'rxjs';
@@ -9,8 +9,8 @@ import { combineLatest } from 'rxjs';
   styleUrls: ['./tech.component.css']
 })
 export class TechComponent implements OnInit {
-  techDatas$ = this._techService.techData$;
-  getAllData$ = this._techService.getAllTechData();
+  techDatas$ = this._techService.eachTechData$;
+  getAllData$ = this._techService.allTechData$;
   routeParam$ = this._route.paramMap;
 
   constructor(private _route: ActivatedRoute, private _techService: TechDataService) { }
@@ -20,8 +20,7 @@ export class TechComponent implements OnInit {
       subscribe(([res, params]) => {
         let id = params.get('id');
         let data = res.data || [];
-        let filteredData = data.filter(item => item.type === id);
-        this._techService.filterTechData(filteredData);
+        this._techService.filterTechData(data, id);
       });
   }
 

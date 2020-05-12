@@ -6,18 +6,9 @@ import { TechDataService } from '../service/tech-data.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
   constructor(private _techService: TechDataService) { }
   techDataList$ = this._techService.techLists$;
-
-  ngOnInit() {
-    this._techService.getAllTechData()
-      .subscribe(res => {
-        let data = res.data || [];
-        let uniqueTech = [... new Set(data.map(item => item.type))];
-        this._techService.getTechList(uniqueTech);
-      });
-  }
 
 }

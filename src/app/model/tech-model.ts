@@ -8,7 +8,7 @@ export interface TechModel {
     description: string;
 }
 
-export interface TechModelWithCount {
+export interface TechModelData {
     totalRecords: number[];
     data: TechModel[];
 } 
